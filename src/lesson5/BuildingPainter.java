@@ -75,7 +75,7 @@ public class BuildingPainter extends Frame {
 			painter.drawRect(xWalls + autoShift * i, yWalls, widthWalls, heightWalls);// walls
 			painter.drawRect(xDoor + autoShift * i, yDoor, widthDoorAndSideWindow, heightDoor); // door
 			painter.drawRect(xWindow + autoShift * i, yWindow, widthDoorAndSideWindow, widthDoorAndSideWindow); // window
-//hbehjcdvgvv
+
 		}
 
 	}

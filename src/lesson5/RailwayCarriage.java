@@ -33,31 +33,38 @@ public class RailwayCarriage extends Frame {
 
 	// Carriage
 	int yCarriage = 200;
-	int carriageWidth = 280, carriageHeight = 80;
+	int  carriageHeight = 180;
 
 	// Roof
 	int roofHeight = 20;
+	int roofWidth = 380; 
+	
 
 	int wheelSpacing = 10;
-	
+
 	// Connector
-	int xConnector = 10;
-	int connectorWidth = 20, connectorHeight = 10;
+	int xConnector = 30;
+	int connectorWidth = 30, connectorHeight = 20;
 
-	int numWindows = 9; // for inner loop
+	int numWindows = 9; // For inner loop
+	
+	int carriageWidth = roofWidth - connectorWidth;
 
-	int windowSize = 25;
-	int windowSpacing = 10;
+	int xWindowSize = carriageWidth / (numWindows + 5);
+	int yWindowSize = carriageHeight / 3;
+	int xWindowSpacing = (carriageWidth - numWindows * xWindowSize)/(numWindows+1);
 	int carriageSpacing = connectorWidth;
 
 	// Shifts
-	int carriageShift = 20;
-	int connectorShift = connectorWidth*2 + carriageWidth;
+	int carriageShift = 2* connectorWidth + carriageWidth;
+	int connectorShift = connectorWidth * 2 + carriageWidth;
 
 	// Calculated variables
-	int yConnector = yCarriage + (carriageHeight / 2) - (connectorHeight / 2);
-	int xCarriage =xConnector + connectorWidth;
-	int wheelDiameter = carriageWidth / 6;
+	int yConnector = yCarriage + carriageHeight - connectorHeight;
+	
+	int xCarriage = xConnector + connectorWidth;
+
+	int wheelDiameter = carriageWidth / 8;
 
 	public void paint(Graphics grf) {
 		Graphics2D painter = (Graphics2D) grf;
@@ -65,46 +72,47 @@ public class RailwayCarriage extends Frame {
 		painter.setColor(Color.WHITE);
 
 		for (int c = 0; c < numCarriages; c++) {
-			
 
 			// Carriage body
-			painter.drawRect(xConnector, yConnector, connectorWidth, connectorHeight); // Front connector
-			
-			painter.drawRect(xCarriage, yCarriage - roofHeight, carriageWidth, roofHeight); // Roof
-			painter.drawRect(xCarriage, yCarriage, carriageWidth, carriageHeight);		
+			painter.drawRect(xConnector + c * carriageShift, yConnector, connectorWidth, connectorHeight); // Front connector 
+																												
 
-			
+			painter.drawRect(xCarriage - connectorWidth/2, yCarriage - roofHeight, roofWidth, roofHeight); // Roof
+			painter.drawRect(xCarriage, yCarriage, carriageWidth, carriageHeight); // Carriage
+
 			painter.drawRect(xCarriage + carriageWidth, yConnector, connectorWidth, connectorHeight); // End connector
-			
-			xCarriage = c * (carriageWidth + carriageSpacing);
-			
 
-			// Windows
-			int totalWindowSpacing = (carriageWidth - (numWindows * windowSize)) / (numWindows + 1);
+//			// Windows
+			// int totalWindowSpacing = (carriageWidth - (numWindows * windowSize)) /
+			// (numWindows + 1);
+			int xWindowStart = xCarriage + xWindowSpacing;
 			for (int w = 0; w < numWindows; w++) {
-				int xWindow = xCarriage + totalWindowSpacing + w * (windowSize + totalWindowSpacing);
-				int yWindow = yCarriage + 10;
-				painter.drawRect(xWindow, yWindow, windowSize, windowSize);
-			}
 
-			// Wheels
+				int xWindow = xWindowStart + w * (xWindowSize + xWindowSpacing);
+				int yWindow = yCarriage + 10;
+				painter.drawRect(xWindow, yWindow, xWindowSize, yWindowSize);
+			}
+//
+//			// Wheels
 			int xWheel1 = xCarriage + wheelSpacing;
-			int xWheel2 = xCarriage + carriageWidth / 2 - wheelDiameter - wheelSpacing;
-			int xWheel3 = xCarriage + carriageWidth / 2 + wheelSpacing;
+			int xWheel2 = xCarriage + carriageWidth / 3 - wheelDiameter - wheelSpacing;
+			int xWheel3 = xCarriage + carriageWidth * 2 / 3 + wheelSpacing;
 			int xWheel4 = xCarriage + carriageWidth - wheelSpacing - wheelDiameter;
 			int yWheel = yCarriage + carriageHeight;
-
-			// Wheel1, wheel2 and connector
+//
+//			// Wheel1, wheel2 and connector
 			painter.drawOval(xWheel1, yWheel, wheelDiameter, wheelDiameter);
-			painter.drawOval(xWheel4, yWheel, wheelDiameter, wheelDiameter);
+			painter.drawOval(xWheel2, yWheel, wheelDiameter, wheelDiameter);
 			painter.drawRect(xWheel1 + wheelDiameter, yWheel + wheelDiameter / 3, xWheel2 - xWheel1 - wheelDiameter,
 					wheelDiameter / 3);
 
-			// Wheel2, wheel3 and connector
-			painter.drawOval(xWheel2, yWheel, wheelDiameter, wheelDiameter);
+			// Wheel3, wheel4 and connector
 			painter.drawOval(xWheel3, yWheel, wheelDiameter, wheelDiameter);
+			painter.drawOval(xWheel4, yWheel, wheelDiameter, wheelDiameter);
 			painter.drawRect(xWheel3 + wheelDiameter, yWheel + wheelDiameter / 3, xWheel4 - xWheel3 - wheelDiameter,
 					wheelDiameter / 3);
+
+			xCarriage = xCarriage + carriageWidth + 2 * connectorWidth;
 		}
 	}
 }

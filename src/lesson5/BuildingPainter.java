@@ -1,5 +1,5 @@
 /*
- * Building painter with loops (Lesson #4) by Oleksander Kroshka (School 42, 5-A, Dnipro )
+ * Building painter with loops (Lesson #5) by Oleksander Kroshka (School 42, 5-A, Dnipro )
  */
 package lesson5;
 
@@ -10,9 +10,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Iterator;
 
 public class BuildingPainter extends Frame {
-	int SCREEN_WIDTH = 1000, SCREEN_HEIGHT = 600;
+	int SCREEN_WIDTH = 1500, SCREEN_HEIGHT = 600;
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,11 +37,13 @@ public class BuildingPainter extends Frame {
 	int yRoof = SCREEN_HEIGHT / 6;
 	int widthRoof = 300;
 	int heightRoof = 30;
+	int countWindows = 4;
+	int countFloors = 3;
+	int countBuildings = 4;
 
 	int heightWalls = 330;
 	int shiftWalls = 30;
 	
-	int yShiftDoor = 50;
 	int distance = 20;
 	// Calculated variables
 	int autoShift = widthRoof + distance;
@@ -49,16 +52,14 @@ public class BuildingPainter extends Frame {
 	int xWalls = xRoof + shiftWalls;
 	int yWalls = yRoof + heightRoof;
 	int widthWalls = widthRoof - 2 * shiftWalls;
-	int xShiftDoor = widthWalls/9;
-	// Doors calculation
-	int xDoor = xWalls + xShiftDoor;
-	int yDoor = yWalls + heightWalls / 5;
-	int widthDoorAndSideWindow = widthWalls / 3;
-	int heightDoor = heightWalls - heightWalls / 5;
-
+	
 	// Windows calculation
-	int yWindow = yDoor;
-	int xWindow = xWalls + widthWalls - widthDoorAndSideWindow - shiftWalls;
+	int widthXSideWindow = widthWalls / (countWindows + 1);
+	int xShiftWindow = widthXSideWindow / (countWindows + 1);
+	int widthYSideWindow = heightWalls / (countFloors + 1);
+	int yShiftWindow = widthYSideWindow / (countFloors + 1);
+	int xStart = xWalls + xShiftWindow;
+	int yStart = yWalls + yShiftWindow;
 
 	// Main method - entry point //
 	public static void main(String[] args) {
@@ -70,13 +71,21 @@ public class BuildingPainter extends Frame {
 		Graphics2D painter = (Graphics2D) grf;
 		painter.setStroke(new BasicStroke(5));
 		painter.setColor(Color.DARK_GRAY);
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < countBuildings; i++) { 
+			// painting buildings
 			painter.drawRect(xRoof + autoShift * i, yRoof, widthRoof, heightRoof); // roof
 			painter.drawRect(xWalls + autoShift * i, yWalls, widthWalls, heightWalls);// walls
-			painter.drawRect(xDoor + autoShift * i, yDoor, widthDoorAndSideWindow, heightDoor); // door
-			painter.drawRect(xWindow + autoShift * i, yWindow, widthDoorAndSideWindow, widthDoorAndSideWindow); // window
-
+			int yWindow = yStart;
+			for (int f = 0; f < countFloors; f++) {
+				// painting floors
+				int xWindow = xStart + autoShift * i;
+		    	for (int j = 0; j < countWindows; j++) {
+		    		// painting windows
+				    painter.drawRect(xWindow, yWindow, widthXSideWindow, widthYSideWindow); // window
+		    		xWindow = xWindow + widthXSideWindow + xShiftWindow;
+		    	}
+		    	yWindow = yWindow + widthYSideWindow + yShiftWindow;
+			}
 		}
-
 	}
 }

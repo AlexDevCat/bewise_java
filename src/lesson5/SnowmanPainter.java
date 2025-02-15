@@ -1,5 +1,5 @@
 /*
- * Snowman painter with loops and variables (Lesson #4) by Oleksander Kroshka (School 42, 5-A, Dnipro )
+ * Snowman painter with loops and variables (Lesson #5) by Oleksander Kroshka (School 42, 5-A, Dnipro )
  */
 package lesson5;
 

@@ -1,3 +1,7 @@
+/*
+ * Railway carriage painter with loops (Lesson #5) by Oleksander Kroshka (School 42, 5-A, Dnipro )
+ */
+
 package lesson5;
 
 import java.awt.BasicStroke;
@@ -18,9 +22,11 @@ public class RailwayCarriage extends Frame {
 				System.exit(0);
 			}
 		});
+		
+
 
 		setSize(frameLength, frameHeight);
-		setBackground(new Color(0, 128, 128));
+		//setBackground(new Color(0, 128, 128));
 		setVisible(true);
 	}
 
@@ -29,16 +35,15 @@ public class RailwayCarriage extends Frame {
 	}
 
 	int frameLength = 1300, frameHeight = 600; // Change frame size if needed
-	int numCarriages = 1; // Number of carriages (for outer loop)
+	int numCarriages = 3; // Number of carriages (for outer loop)
 
 	// Carriage
 	int yCarriage = 200;
-	int  carriageHeight = 180;
+	int carriageHeight = 180;
 
 	// Roof
 	int roofHeight = 20;
-	int roofWidth = 380; 
-	
+	int roofWidth = 380;
 
 	int wheelSpacing = 10;
 
@@ -46,22 +51,23 @@ public class RailwayCarriage extends Frame {
 	int xConnector = 30;
 	int connectorWidth = 30, connectorHeight = 20;
 
-	int numWindows = 9; // For inner loop
-	
+	int numWindows = 9; // For inner loop (number of windows)
+
+	// Calculated variables
 	int carriageWidth = roofWidth - connectorWidth;
 
 	int xWindowSize = carriageWidth / (numWindows + 5);
 	int yWindowSize = carriageHeight / 3;
-	int xWindowSpacing = (carriageWidth - numWindows * xWindowSize)/(numWindows+1);
+
+	int xWindowSpacing = (carriageWidth - numWindows * xWindowSize) / (numWindows + 1);
 	int carriageSpacing = connectorWidth;
 
 	// Shifts
-	int carriageShift = 2* connectorWidth + carriageWidth;
+	int carriageShift = 2 * connectorWidth + carriageWidth;
 	int connectorShift = connectorWidth * 2 + carriageWidth;
 
-	// Calculated variables
 	int yConnector = yCarriage + carriageHeight - connectorHeight;
-	
+
 	int xCarriage = xConnector + connectorWidth;
 
 	int wheelDiameter = carriageWidth / 8;
@@ -69,22 +75,21 @@ public class RailwayCarriage extends Frame {
 	public void paint(Graphics grf) {
 		Graphics2D painter = (Graphics2D) grf;
 		painter.setStroke(new BasicStroke(3));
-		painter.setColor(Color.WHITE);
+		painter.setColor(Color.DARK_GRAY);
+		
 
 		for (int c = 0; c < numCarriages; c++) {
 
 			// Carriage body
-			painter.drawRect(xConnector + c * carriageShift, yConnector, connectorWidth, connectorHeight); // Front connector 
-																												
+			painter.drawRect(xConnector + c * carriageShift, yConnector, connectorWidth, connectorHeight); // Front
+																											// connector
 
-			painter.drawRect(xCarriage - connectorWidth/2, yCarriage - roofHeight, roofWidth, roofHeight); // Roof
+			painter.drawRect(xCarriage - connectorWidth / 2, yCarriage - roofHeight, roofWidth, roofHeight); // Roof
 			painter.drawRect(xCarriage, yCarriage, carriageWidth, carriageHeight); // Carriage
 
 			painter.drawRect(xCarriage + carriageWidth, yConnector, connectorWidth, connectorHeight); // End connector
 
-//			// Windows
-			// int totalWindowSpacing = (carriageWidth - (numWindows * windowSize)) /
-			// (numWindows + 1);
+			//Windows
 			int xWindowStart = xCarriage + xWindowSpacing;
 			for (int w = 0; w < numWindows; w++) {
 
@@ -92,15 +97,15 @@ public class RailwayCarriage extends Frame {
 				int yWindow = yCarriage + 10;
 				painter.drawRect(xWindow, yWindow, xWindowSize, yWindowSize);
 			}
-//
-//			// Wheels
+
+			// Wheels
 			int xWheel1 = xCarriage + wheelSpacing;
 			int xWheel2 = xCarriage + carriageWidth / 3 - wheelDiameter - wheelSpacing;
 			int xWheel3 = xCarriage + carriageWidth * 2 / 3 + wheelSpacing;
 			int xWheel4 = xCarriage + carriageWidth - wheelSpacing - wheelDiameter;
 			int yWheel = yCarriage + carriageHeight;
-//
-//			// Wheel1, wheel2 and connector
+
+			// Wheel1, wheel2 and connector
 			painter.drawOval(xWheel1, yWheel, wheelDiameter, wheelDiameter);
 			painter.drawOval(xWheel2, yWheel, wheelDiameter, wheelDiameter);
 			painter.drawRect(xWheel1 + wheelDiameter, yWheel + wheelDiameter / 3, xWheel2 - xWheel1 - wheelDiameter,

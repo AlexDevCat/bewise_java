@@ -1,5 +1,6 @@
 /*
  * Building painter with loops (Lesson #5) by Oleksander Kroshka (School 42, 5-A, Dnipro )
+ * 
  */
 package lesson5;
 
@@ -18,6 +19,7 @@ public class BuildingPainter extends Frame {
 	private static final long serialVersionUID = 1L;
 
 	// ************** Constructor ************
+	
 	BuildingPainter(String title) {
 		super(title);
 		addWindowListener(new WindowAdapter() {

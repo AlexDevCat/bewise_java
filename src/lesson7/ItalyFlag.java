@@ -41,13 +41,13 @@ public class ItalyFlag extends Frame {
 	// variables for calculation
 	int lineWidth = flagWidth / 3;
 
-	Color[] france = { new Color( 33, 125, 30), Color.WHITE, Color.RED };
+	Color[] italy = { new Color( 33, 125, 30), Color.WHITE, Color.RED };
 	
 	//Method for shapes painting//
 	public void paint(Graphics painter) { // API //
 		
-		for (int i = 0; i < france.length; i++) {
-			painter.setColor(france[i]);
+		for (int i = 0; i < italy.length; i++) {
+			painter.setColor(italy[i]);
 			painter.fillRect(xFlag + lineWidth * i, yFlag, lineWidth, flagHeight);			
 		}		
 		painter.setColor(Color.BLACK);

@@ -41,13 +41,13 @@ public class RomaniaFlag extends Frame {
 	// variables for calculation
 	int lineWidth = flagWidth / 3;
 
-	Color[] france = { Color.BLUE, Color.ORANGE, Color.RED };
+	Color[] romania = { Color.BLUE, Color.ORANGE, Color.RED };
 	
 	//Method for shapes painting//
 	public void paint(Graphics painter) { // API //
 		
-		for (int i = 0; i < france.length; i++) {
-			painter.setColor(france[i]);
+		for (int i = 0; i < romania.length; i++) {
+			painter.setColor(romania[i]);
 			painter.fillRect(xFlag + lineWidth * i, yFlag, lineWidth, flagHeight);			
 		}		
 		painter.setColor(Color.BLACK);

@@ -41,12 +41,12 @@ public class LithuanianFlag extends Frame {
 	// variables for calculation
 	int lineHeight = flagHeight / 3;
 
-	Color[] germany = { Color.ORANGE, new Color(33, 125, 30), Color.RED };
+	Color[] lithuania = { Color.ORANGE, new Color(33, 125, 30), Color.RED };
 	
 	//Method for shapes painting//
 	public void paint(Graphics painter) { // API //
-		for (int i = 0; i < germany.length; i++) {
-			painter.setColor(germany[i]);
+		for (int i = 0; i < lithuania.length; i++) {
+			painter.setColor(lithuania[i]);
 			painter.fillRect(xFlag, yFlag + lineHeight * i, flagWidth, lineHeight);			
 		}		
 		painter.setColor(Color.BLACK);

@@ -41,12 +41,12 @@ public class NetherlandsFlag extends Frame {
 	// variables for calculation
 	int lineHeight = flagHeight / 3;
 
-	Color[] germany = { Color.RED, Color.WHITE , Color.BLUE };
+	Color[] holland = { Color.RED, Color.WHITE , Color.BLUE };
 	
 	//Method for shapes painting//
 	public void paint(Graphics painter) { // API //
-		for (int i = 0; i < germany.length; i++) {
-			painter.setColor(germany[i]);
+		for (int i = 0; i < holland.length; i++) {
+			painter.setColor(holland[i]);
 			painter.fillRect(xFlag, yFlag + lineHeight * i, flagWidth, lineHeight);			
 		}		
 		painter.setColor(Color.BLACK);

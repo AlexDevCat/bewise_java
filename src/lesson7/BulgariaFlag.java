@@ -41,12 +41,12 @@ public class BulgariaFlag extends Frame {
 	// variables for calculation
 	int lineHeight = flagHeight / 3;
 
-	Color[] germany = { Color.WHITE, new Color(33, 125, 30), Color.RED };
+	Color[] bulgaria = { Color.WHITE, new Color(33, 125, 30), Color.RED };
 	
 	//Method for shapes painting//
 	public void paint(Graphics painter) { // API //
-		for (int i = 0; i < germany.length; i++) {
-			painter.setColor(germany[i]);
+		for (int i = 0; i < bulgaria.length; i++) {
+			painter.setColor(bulgaria[i]);
 			painter.fillRect(xFlag, yFlag + lineHeight * i, flagWidth, lineHeight);			
 		}		
 		painter.setColor(Color.BLACK);

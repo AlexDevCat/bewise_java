@@ -5,6 +5,7 @@
 package lesson8;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
@@ -48,17 +49,22 @@ public class HorizontalFlags extends Frame {
 	Color[] poland = { Color.WHITE, Color.RED };
 
 	Color[][] states = { germany, lithuania, holland, bulgaria, austria, ukraine, poland };
+	String[] stateNames = { "Germany", "Lithuania", "Holland", "Bulgaria", "Austria", "Ukraine", "Poland" };
 
 	// Method for shapes painting//
 	public void paint(Graphics painter) { // API //
+		int countColors = 0;
+		int lineHeight = 0;
+		painter.setFont(new Font("DIALOG", Font.ITALIC, letterHeight));
 		for (int s = 0; s < states.length; s++) {
-			int countColors = states[s].length; //Обчислюємо довжину поточного масиву з кольорами
-			int lineHeight = flagHeight / countColors; 
+			countColors = states[s].length; // Обчислюємо довжину поточного масиву з кольорами
+			lineHeight = flagHeight / countColors;
 			for (int stateColorIndex = 0; stateColorIndex < countColors; stateColorIndex++) {
 				painter.setColor(states[s][stateColorIndex]);
 				painter.fillRect(xFlag + distance * s, yFlag + lineHeight * stateColorIndex, flagWidth, lineHeight);
 			}
 			painter.setColor(Color.BLACK);
+			painter.drawString(stateNames[s], xFlag + distance * s, yFlag + flagHeight + 40);
 			painter.drawRect(xFlag + distance * s, yFlag, flagWidth, flagHeight);
 		}
 	}

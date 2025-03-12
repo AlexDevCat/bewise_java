@@ -5,6 +5,7 @@
 package lesson8;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
@@ -43,17 +44,22 @@ public class VerticalFlags extends Frame {
 	Color[] romania = { Color.BLUE, Color.ORANGE, Color.RED };
 
 	Color[][] states = { italy, france, romania };
+	String[] stateNames = { "Italy", "France", "Romania" };
 
 	// Method for shapes painting//
 	public void paint(Graphics painter) { // API //
+		int countColors = 0;
+		int lineWidth = 0;
+		painter.setFont(new Font("DIALOG", Font.ITALIC, letterHeight));
 		for (int s = 0; s < states.length; s++) {
-			int countColors = states[s].length; //Обчислюємо довжину поточного масиву з кольорами
-			int lineWidth = flagWidth / countColors;
+			countColors = states[s].length; // Обчислюємо довжину поточного масиву з кольорами
+			lineWidth = flagWidth / countColors;
 			for (int stateColorIndex = 0; stateColorIndex < countColors; stateColorIndex++) {
 				painter.setColor(states[s][stateColorIndex]);
 				painter.fillRect(xFlag + distance * s + lineWidth * stateColorIndex, yFlag, lineWidth, flagHeight);
 			}
 			painter.setColor(Color.BLACK);
+			painter.drawString(stateNames[s], xFlag + distance * s, yFlag + flagHeight + 40);
 			painter.drawRect(xFlag + distance * s, yFlag, flagWidth, flagHeight);
 		}
 	}

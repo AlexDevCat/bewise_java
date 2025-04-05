@@ -26,7 +26,7 @@ public class Car extends Frame {
 	}
 
 	public static void main(String[] args) {
-		Car myFirstCar = new Car("Auto");
+		new Car("Auto");
 	}
 
 	// initializated primitive variables

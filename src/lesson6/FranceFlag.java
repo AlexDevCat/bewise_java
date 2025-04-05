@@ -5,17 +5,12 @@
 
 package lesson6;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-
-import javax.swing.Painter;
 
 public class FranceFlag extends Frame {
 	private static final long serialVersionUID = 1L;

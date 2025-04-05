@@ -11,7 +11,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Iterator;
 
 public class BuildingPainter extends Frame {
 	int SCREEN_WIDTH = 1500, SCREEN_HEIGHT = 600;

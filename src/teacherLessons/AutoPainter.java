@@ -8,8 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.Painter;
-
 public class AutoPainter extends Frame {
 	private static final long serialVersionUID = 1L;
 
